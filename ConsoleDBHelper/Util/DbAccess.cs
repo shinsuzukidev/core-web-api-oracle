@@ -113,7 +113,7 @@ namespace ConsoleDBHelper.Util
             }
         }
 
-        public int ExecNonQuery(DbCommand cmd)
+        public int ExecNonQuery(OracleCommand cmd)
         {
             try
             {
@@ -128,13 +128,29 @@ namespace ConsoleDBHelper.Util
             }
         }
 
-        public T? ExecuteScalar<T>(DbCommand cmd)
+        public T? ExecuteScalar<T>(OracleCommand cmd)
         {
             try
             {
                 cmd.Connection = this._cnn;
                 cmd.Transaction = this._tran;
                 return (T?)cmd.ExecuteScalar();
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.ToString());
+                throw;
+            }
+        }
+
+        public void ExecuteReader(OracleCommand cmd, Action<OracleDataReader> action)
+        {
+            try
+            {
+                using (var reader = cmd.ExecuteReader())
+                {
+                    action(reader);
+                }
             }
             catch (Exception ex)
             {

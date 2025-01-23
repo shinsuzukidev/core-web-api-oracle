@@ -1,6 +1,7 @@
 ﻿using ConsoleDBHelper.Util;
 using NLog;
 using Oracle.ManagedDataAccess.Client;
+using System.Reflection.PortableExecutable;
 
 namespace ConsoleDBHelper
 {
@@ -30,7 +31,6 @@ namespace ConsoleDBHelper
 
                 // ExecuteNoQuery
                 logger.Info("> ExecuteNoQuery");
-
                 try
                 {
                     dba.BeginTransaction();
@@ -51,15 +51,29 @@ namespace ConsoleDBHelper
                 }
 
                 // ExecuteScalar
-                cmd = dba.CreateCommand();
                 logger.Info("> ExecuteScalar");
+                cmd = dba.CreateCommand();
                 cmd.CommandText = "select count(*) from mysample";
-                var count = dba.ExecuteScalar<int>(cmd);
+                var count = dba.ExecuteScalar<decimal>(cmd);
                 Console.WriteLine($"count: {count}");
+
+
+                // ExecuteReader
+                logger.Info("> ExecuteReader");
+                cmd = dba.CreateCommand();
+                cmd.CommandText = "select * from mysample";
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        Console.WriteLine("Name : " + reader["NAME"]);
+                    }
+                }
             }
 
             logger.Info("success.");
             Console.ReadLine();
         }
+
     }
 }
