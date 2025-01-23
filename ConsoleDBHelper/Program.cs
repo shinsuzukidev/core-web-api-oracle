@@ -21,7 +21,7 @@ namespace ConsoleDBHelper
                 // ExecuteQuery
                 logger.Info("> ExecuteQuery");
                 cmd.CommandText = "select * from mysample where ID=:p_ID";
-                DbAccess.AddParameter(cmd, "p_ID", OracleDbType.Int64, 2);
+                dba.AddParameter(cmd, "p_ID", OracleDbType.Int64, 2);
                 var dt = dba.ExecuteQuery(cmd);
 
                 for (int i = 0; i < dt.Rows.Count; i++)
@@ -36,9 +36,9 @@ namespace ConsoleDBHelper
                     dba.BeginTransaction();
                     cmd = dba.CreateCommand();
                     cmd.CommandText = "insert into mysample values (:p_ID,:p_NAME,:p_AGE)";
-                    DbAccess.AddParameter(cmd, "p_AGE", OracleDbType.Int64, 80);
-                    DbAccess.AddParameter(cmd, "p_NAME", OracleDbType.NVarchar2, "nemoto");
-                    DbAccess.AddParameter(cmd, "p_ID", OracleDbType.Int64, 6);
+                    dba.AddParameter(cmd, "p_AGE", OracleDbType.Int64, 80);
+                    dba.AddParameter(cmd, "p_NAME", OracleDbType.NVarchar2, "nemoto");
+                    dba.AddParameter(cmd, "p_ID", OracleDbType.Int64, 6);
                     dba.ExecNonQuery(cmd);
                     dba.Commit();
                 }

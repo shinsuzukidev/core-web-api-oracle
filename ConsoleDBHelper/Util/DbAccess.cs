@@ -159,7 +159,7 @@ namespace ConsoleDBHelper.Util
             }
         }
 
-        public static void AddParameter(OracleCommand cmd, string parameterName, OracleDbType type, Object value)
+        public void AddParameter(OracleCommand cmd, string parameterName, OracleDbType type, Object value)
         {
             OracleParameter param = cmd.CreateParameter();
             param.ParameterName = parameterName;
