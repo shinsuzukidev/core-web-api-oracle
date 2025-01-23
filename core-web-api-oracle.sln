@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleOracle", "ConsoleOra
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleOracleLocal", "ConsoleOracleLocal\ConsoleOracleLocal.csproj", "{F2EE1883-606F-44C0-87DC-08E565D9EF3C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleDBHelper", "ConsoleDBHelper\ConsoleDBHelper.csproj", "{46E0EF8D-1FC3-48A6-868B-83EB53A06461}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{F2EE1883-606F-44C0-87DC-08E565D9EF3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F2EE1883-606F-44C0-87DC-08E565D9EF3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F2EE1883-606F-44C0-87DC-08E565D9EF3C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{46E0EF8D-1FC3-48A6-868B-83EB53A06461}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46E0EF8D-1FC3-48A6-868B-83EB53A06461}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46E0EF8D-1FC3-48A6-868B-83EB53A06461}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46E0EF8D-1FC3-48A6-868B-83EB53A06461}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
