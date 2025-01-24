@@ -1,7 +1,5 @@
-﻿using ConsoleDBHelper.Util;
-using NLog;
-using Oracle.ManagedDataAccess.Client;
-using System.Reflection.PortableExecutable;
+﻿using Oracle.ManagedDataAccess.Client;
+using Utility.DB;
 
 namespace ConsoleDBHelper
 {

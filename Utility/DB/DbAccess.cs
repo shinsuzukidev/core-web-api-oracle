@@ -3,7 +3,7 @@ using System.Configuration;
 using System.Data;
 using System.Data.Common;
 
-namespace ConsoleDBHelper.Util
+namespace Utility.DB
 {
     public class DbAccess: IDisposable
     {
