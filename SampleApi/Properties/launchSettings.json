@@ -13,7 +13,7 @@
     "https": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "api/hoge",
+      "launchUrl": "api/v1/hoge/index",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },

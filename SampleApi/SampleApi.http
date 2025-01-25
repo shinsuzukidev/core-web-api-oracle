@@ -1,6 +1,10 @@
-@SampleApi_HostAddress = http://localhost:5175
+@SampleApi_HostAddress = http://localhost:5175/api/v1
 
-GET {{SampleApi_HostAddress}}/weatherforecast/
-Accept: application/json
+GET {{SampleApi_HostAddress}}/weatherforecast
 
 ###
+GET {{SampleApi_HostAddress}}/hoge/index
+
+###
+GET {{SampleApi_HostAddress}}/hoge/GetName?id=100
+
