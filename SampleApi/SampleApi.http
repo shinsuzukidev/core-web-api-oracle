@@ -8,3 +8,16 @@ GET {{SampleApi_HostAddress}}/hoge/index
 ###
 GET {{SampleApi_HostAddress}}/hoge/GetName?id=100
 
+###
+GET {{SampleApi_HostAddress}}/hoge/GetAge?id=100
+
+###
+Post {{SampleApi_HostAddress}}/hoge/GetUser
+Content-Type: application/json
+
+{
+    "id": 100,
+    "name": "a123456",
+    "age" : 30
+}
+
