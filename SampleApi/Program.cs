@@ -1,4 +1,7 @@
+using System.Text.Encodings.Web;
 using SampleApi.Extensions;
+using System.Text.Unicode;
+using Microsoft.Extensions.WebEncoders;
 
 namespace SampleApi
 {
@@ -14,6 +17,8 @@ namespace SampleApi
             builder.Services.ConfigureApiBehaviorOptions();     // APIの振る舞い
             builder.Services.ConfigureFilter();                 // フィルター
             builder.Services.ConfigureMySettings();             // 設定ファイル
+
+
 
             var app = builder.Build();
 

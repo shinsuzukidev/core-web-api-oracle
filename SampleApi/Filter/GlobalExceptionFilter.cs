@@ -22,8 +22,9 @@ namespace SampleApi.Filter
 
     public class GlobalExceptionFilter : IExceptionFilter
     {
-        //ILoggerManager _logger;
+        static NLog.Logger _logger = NLog.LogManager.GetCurrentClassLogger();
 
+        //ILoggerManager _logger;
 
         //public GlobalExceptionFilter(ILoggerManager logger)
         //{
@@ -60,8 +61,7 @@ namespace SampleApi.Filter
                 var controllerActionDescriptor = context.ActionDescriptor as ControllerActionDescriptor;
                 var name = context.HttpContext.User.FindFirst(ClaimTypes.Name)?.Value;
 
-                //_logger.LogError(
-                System.Diagnostics.Debug.WriteLine(
+                _logger.Error(
                     $"Controller:{controllerActionDescriptor!.ControllerName} " +
                     $"Action:{controllerActionDescriptor.ActionName} " +
                     $"User:{(name ?? "No User")} " +
@@ -73,7 +73,7 @@ namespace SampleApi.Filter
             }
             catch (Exception ex)
             {
-                //_logger.LogError("\r\n" + "ログ出力時にエラーが発生。" + ex);
+                _logger.Error("\r\n" + "ログ出力時にエラーが発生。" + ex);
             }
         }
     }

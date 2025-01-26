@@ -10,14 +10,15 @@ namespace SampleApi.Filter
 {
     public class GlobalActionFilter: IActionFilter
     {
+        static NLog.Logger _logger = NLog.LogManager.GetCurrentClassLogger();
+
         public GlobalActionFilter() 
         {
-                
         }
 
         public void OnActionExecuting(ActionExecutingContext context)
         {
-            //_logger.Info(this.AccessInfo(context) + "OnActionExecuting");
+            _logger.Info(this.AccessInfo(context) + ",OnActionExecuting");
 
             if (!context.ModelState.IsValid)
             {
@@ -28,7 +29,7 @@ namespace SampleApi.Filter
 
         public void OnActionExecuted(ActionExecutedContext context)
         {
-            //_logger.Info(this.AccessInfo(context) + "OnActionExecuted");
+            _logger.Info(this.AccessInfo(context) + ",OnActionExecuted");
         }
 
         private void SetBadRequestResponse(ActionExecutingContext context)
@@ -77,7 +78,7 @@ namespace SampleApi.Filter
             var controllerName = controllerActionDescriptor!.ControllerName;
             var actionName = controllerActionDescriptor!.ActionName;
             var userName = context.HttpContext.User.FindFirst(ClaimTypes.Name)?.Value;
-            return $"Controller={controllerName},Action={actionName},User={userName},";
+            return $"Controller={controllerName},Action={actionName},User={userName}";
         }
 
     }

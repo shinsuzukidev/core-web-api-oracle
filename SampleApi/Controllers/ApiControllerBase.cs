@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Text.Json.Serialization;
 using System.Text.Json;
+using System.Text.Encodings.Web;
+using System.Text.Unicode;
 
 namespace SampleApi.Controllers
 {
@@ -14,8 +16,9 @@ namespace SampleApi.Controllers
                 new JsonSerializerOptions
                 {
                     PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
-                    DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
-# if DEBUG
+                    DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,   // すべての null 値プロパティを無視する
+                    Encoder = JavaScriptEncoder.Create(UnicodeRanges.All),          // エンコード対応
+#if DEBUG
                     WriteIndented = true,
 # endif
                 });

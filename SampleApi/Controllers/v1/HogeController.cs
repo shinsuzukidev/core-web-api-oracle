@@ -1,12 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Asp.Versioning;
+﻿using Asp.Versioning;
+using Microsoft.AspNetCore.Mvc;
 using SampleApi.Models.Hoge;
-using System.Text.Json;
-using System.Text.Json.Serialization;
 using SampleApi.Util.Config;
-using Microsoft.Extensions.Configuration;
 using System.Net;
-using System.Runtime;
 
 namespace SampleApi.Controllers.v1
 {
@@ -37,7 +33,6 @@ namespace SampleApi.Controllers.v1
             //        Settings = _config.GetConfigurationRoot()["properties:type:description"]    // custom, mysettings.json
             //    });
 
-
             MySettings mySettings = new MySettings()
             {
                 Title = "myHome",
@@ -47,7 +42,7 @@ namespace SampleApi.Controllers.v1
                     Name = new Name
                     {
                         Type = "type-a",
-                        Description = "説明!"
+                        Description = "説明"
                     }
                 }
             };
@@ -67,8 +62,6 @@ namespace SampleApi.Controllers.v1
             //                    WriteIndented = true
             //#endif
             //                });
-
-            throw new Exception("myException");
 
             return this.ToJsonResult<GetNameResponse>(
                 new GetNameResponse()
