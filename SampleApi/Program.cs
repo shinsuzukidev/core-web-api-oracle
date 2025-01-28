@@ -33,6 +33,7 @@ namespace SampleApi
                 app.UseHsts();                          // HTTPの代わりにHTTPSを使用するよう指示
             }
 
+            app.UseStaticFiles();
             app.UseHttpsRedirection();                  // 強制的に HTTP 要求を HTTPS へリダイレクトします
             app.UseAuthorization();                     // 認可を有効化
 

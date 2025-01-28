@@ -21,3 +21,32 @@ Content-Type: application/json
     "age" : 30
 }
 
+########## File Download
+###
+GET {{SampleApi_HostAddress}}/hoge/GetFile
+
+###
+GET {{SampleApi_HostAddress}}/hoge/GetImageFile
+
+###
+GET {{SampleApi_HostAddress}}/hoge/GetImageFile?fileName=test-img.jpg
+
+###
+GET {{SampleApi_HostAddress}}/hoge/GetCsvFile
+
+########## File Upload
+# ファイルを指定すると失敗する
+POST {{SampleApi_HostAddress}}/hoge/Upload
+Content-Type: multipart/form-data; boundary=boundary123
+
+--boundary123
+Content-Disposition: form-data; name="file"; filename="upload1.txt"
+Content-Type: text/plain
+
+1234
+5678
+日本語
+--boundary123--
+
+
+
