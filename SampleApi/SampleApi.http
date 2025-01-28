@@ -37,16 +37,20 @@ GET {{SampleApi_HostAddress}}/hoge/GetCsvFile
 ########## File Upload
 # ファイルを指定すると失敗する
 POST {{SampleApi_HostAddress}}/hoge/Upload
-Content-Type: multipart/form-data; boundary=boundary123
+Content-Type: multipart/form-data; boundary=MyBoundary
 
---boundary123
-Content-Disposition: form-data; name="file"; filename="upload1.txt"
-Content-Type: text/plain
+--MyBoundary
+Content-Disposition: form-data; name="description"
 
-1234
-5678
-日本語
---boundary123--
+POWER=TEXT_CONTENTS
+--MyBoundary
+Content-Disposition: form-data; name="file"; filename="upload1.csv"
+Content-Type: text/csv
+
+a,b,c
+1,2,3
+4,5,6
+--MyBoundary--
 
 
 

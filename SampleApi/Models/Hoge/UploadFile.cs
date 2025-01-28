@@ -6,5 +6,8 @@ namespace SampleApi.Models.Hoge
     {
         [DataMember(Name = "file")]
         public IFormFile? File { get; set; }
+
+        [DataMember(Name = "description")]
+        public string Description { get; set; } = string.Empty;
     }
 }

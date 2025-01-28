@@ -249,6 +249,8 @@ namespace SampleApi.Controllers.v1
         {
             if (uploadFile.File != null && uploadFile.File.Length > 0)
             {
+                System.Diagnostics.Debug.Write(uploadFile.Description);
+
                 var reader = new StreamReader(uploadFile.File.OpenReadStream());
                 var content = reader.ReadToEnd();
                 System.Diagnostics.Debug.Write(content);
