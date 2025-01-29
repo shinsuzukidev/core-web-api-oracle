@@ -4,6 +4,7 @@ using SampleApi.Util.Config;
 using System.Text.Json.Serialization;
 using System.Text.Json;
 using SampleApi.Filter;
+using Microsoft.OpenApi.Models;
 
 namespace SampleApi.Extensions
 {
@@ -54,6 +55,21 @@ namespace SampleApi.Extensions
                 // グローバルの例外はフィルターが使いやすい
                 // https://www.herlitz.io/2019/05/05/global-exception-handling-asp.net-core/
                 config.Filters.Add<GlobalExceptionFilter>();
+            });
+        }
+
+        public static void ConfigureSwagger(this IServiceCollection services)
+        {
+            services.AddEndpointsApiExplorer();
+
+            services.AddSwaggerGen(options =>
+            {
+                options.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Version = "v1",
+                    Title = "SampleApi",
+                    Description = "サンプルAPI",
+                });
             });
         }
 

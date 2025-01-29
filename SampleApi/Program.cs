@@ -17,6 +17,7 @@ namespace SampleApi
             builder.Services.ConfigureApiBehaviorOptions();     // APIの振る舞い
             builder.Services.ConfigureFilter();                 // フィルター
             builder.Services.ConfigureMySettings();             // 設定ファイル
+            builder.Services.ConfigureSwagger();                // Swagger設定
 
 
 
@@ -24,8 +25,8 @@ namespace SampleApi
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment()) {
-                //app.UseSwagger();                     // Swaggerミドルウェアを追加
-                //app.UseSwaggerUI();                   // 静的ファイルミドルウェアを有効化
+                app.UseSwagger();                       // Swaggerミドルウェアを追加
+                app.UseSwaggerUI();                     // 静的ファイルミドルウェアを有効化
                 app.UseDeveloperExceptionPage();        // 開発者例外ページを有効化
             } 
             else
