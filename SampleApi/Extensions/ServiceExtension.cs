@@ -5,6 +5,7 @@ using System.Text.Json.Serialization;
 using System.Text.Json;
 using SampleApi.Filter;
 using Microsoft.OpenApi.Models;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace SampleApi.Extensions
 {
@@ -70,6 +71,33 @@ namespace SampleApi.Extensions
                     Title = "SampleApi",
                     Description = "サンプルAPI",
                 });
+            });
+        }
+        public static void ConfigureAuthentication(this IServiceCollection services)
+        {
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie((options) =>
+                {
+                    options.SlidingExpiration = true;
+                    options.Events.OnRedirectToLogin = cxt =>
+                    {
+                        cxt.Response.StatusCode = StatusCodes.Status401Unauthorized;
+                        return Task.CompletedTask;
+                    };
+                    options.Events.OnRedirectToAccessDenied = cxt =>
+                    {
+                        cxt.Response.StatusCode = StatusCodes.Status403Forbidden;
+                        return Task.CompletedTask;
+                    };
+                    options.Events.OnRedirectToLogout = cxt => Task.CompletedTask;
+                });
+        }
+
+        public static void ConfigureAuthorization(this IServiceCollection services)
+        {
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("AdminPolicy", policy => policy.RequireRole(new[] { "admin" }));
             });
         }
 

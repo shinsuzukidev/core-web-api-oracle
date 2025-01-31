@@ -2,6 +2,40 @@
 
 GET {{SampleApi_HostAddress}}/weatherforecast
 
+###---------- 認証↓
+### login
+POST {{SampleApi_HostAddress}}/Account/Login
+Content-Type: application/json
+
+{
+    "roleType": "light_user",
+    "loginName": "sato",
+    "password": "fakepass"
+}
+
+### logout
+POST {{SampleApi_HostAddress}}/Account/Logout
+
+###
+Get {{SampleApi_HostAddress}}/hoge/NoRole
+
+###
+Get {{SampleApi_HostAddress}}/hoge/AdminOnly
+
+###
+Get {{SampleApi_HostAddress}}/hoge/CheckAdminPolicy
+
+###
+Get {{SampleApi_HostAddress}}/hoge/UserOnly
+
+###
+Get {{SampleApi_HostAddress}}/hoge/UserOrLightUserOnly
+
+
+###---------- 認証↑
+
+
+
 ###
 GET {{SampleApi_HostAddress}}/hoge/index
 

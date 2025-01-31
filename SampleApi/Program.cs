@@ -13,6 +13,8 @@ namespace SampleApi
 
             // Add services to the container.
             builder.Services.AddControllers();                  //
+            builder.Services.ConfigureAuthentication();         // 認可
+            builder.Services.ConfigureAuthorization();          // 認証
             builder.Services.ConfigureApiVersioning();          // APIバージョニング
             builder.Services.ConfigureApiBehaviorOptions();     // APIの振る舞い
             builder.Services.ConfigureFilter();                 // フィルター
@@ -36,7 +38,8 @@ namespace SampleApi
 
             app.UseStaticFiles();
             app.UseHttpsRedirection();                  // 強制的に HTTP 要求を HTTPS へリダイレクトします
-            app.UseAuthorization();                     // 認可を有効化
+            app.UseAuthentication();                    // 認可を有効化
+            app.UseAuthorization();                     // 認証を有効化
 
             app.MapControllers();                       // 属性ルーティング コントローラーがマップされます
             app.Run();

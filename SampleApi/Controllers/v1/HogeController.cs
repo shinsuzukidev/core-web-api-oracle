@@ -7,6 +7,7 @@ using CsvHelper;
 using System.Net;
 using CsvHelper.Configuration;
 using System.Text;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SampleApi.Controllers.v1
 {
@@ -21,6 +22,8 @@ namespace SampleApi.Controllers.v1
 
         // アプリケーションルートの物理パスを取得
         private readonly IWebHostEnvironment _webHostEnvironment;
+
+        static NLog.Logger _logger = NLog.LogManager.GetCurrentClassLogger();
 
         public HogeController(IConfiguration configuration, IMyConfig config, IWebHostEnvironment webHostEnvironment)
         {
@@ -259,5 +262,48 @@ namespace SampleApi.Controllers.v1
 
             return BadRequest();
         }
+
+        [HttpGet("AdminOnly")]
+        [Authorize(Roles = "admin")]
+        public IActionResult AdminOnly()
+        {
+            _logger.Debug(this.ActionInfo() + "Hoge ====> AdminOnly");
+            return Ok();
+        }
+
+        [HttpGet("UserOnly")]
+        [Authorize(Roles = "user")]
+        public IActionResult UserOnly()
+        {
+            _logger.Debug(this.ActionInfo() + "Hoge ====> UserOnly");
+            return Ok();
+        }
+
+        [HttpGet("UserOrLightUserOnly")]
+        [Authorize(Roles = "user,light_user")] // or
+        //[Authorize(Roles = "user")]       // and
+        //[Authorize(Roles = "light_user")] // and
+        public IActionResult UserOrLightUserOnly()
+        {
+            _logger.Debug(this.ActionInfo() + "Hoge ====> user,light_user");
+            return Ok();
+        }
+
+        [HttpGet("NoRole")]
+        public IActionResult NoRole()
+        {
+            _logger.Debug(this.ActionInfo() + "Hoge ====> NoRole");
+            return Ok();
+            //return Ok(new { test="999", message="test-message" });
+        }
+
+        [HttpGet("CheckAdminPolicy")]
+        [Authorize("AdminPolicy")]
+        public IActionResult CheckAdminPolicy()
+        {
+            _logger.Debug(this.ActionInfo() + "Hoge ====> CheckAdminPolicy");
+            return Ok();
+        }
+
     }
 }
