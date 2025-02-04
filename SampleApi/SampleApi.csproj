@@ -17,7 +17,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="_File\" />
     <Folder Include="_Tmp\" />
   </ItemGroup>
 
